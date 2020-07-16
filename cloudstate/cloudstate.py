@@ -25,44 +25,41 @@ class CloudState:
     logging.basicConfig(format='%(asctime)s - %(filename)s - %(levelname)s: %(message)s', level=logging.INFO)
     logging.root.setLevel(logging.NOTSET)
 
-    host = '127.0.0.1'
-    port = '8080'
-    workers = 10
-    use_domain_sockets: bool = False
-    address = '{}:{}'.format(os.environ.get('HOST', host), os.environ.get('PORT', port))
-    event_sourced_entities: List[EventSourcedEntity] = field(default_factory=list)
-
-    def use_uds(self):
-        self.use_domain_sockets = True
-        return self
+    __host = '127.0.0.1'
+    __port = '8080'
+    __workers = 10
+    __event_sourced_entities: List[EventSourcedEntity] = field(default_factory=list)
 
     def host(self, address: str):
-        self.host = address
+        """Set the Network Host address."""
+        self.__host = address
         return self
 
     def port(self, port: str):
-        self.port = port
+        """Set the Network Port address."""
+        self.__port = port
         return self
 
     def max_workers(self, workers: Optional[int] = 10):
-        self.workers = workers
+        """Set the gRPC Server number of Workers."""
+        self.__workers = workers
         return self
 
     def register_event_sourced_entity(self, entity: EventSourcedEntity):
-        self.event_sourced_entities.append(entity)
+        """Registry the user EventSourced entity."""
+        self.__event_sourced_entities.append(entity)
         return self
 
     def start(self):
-        if self.use_domain_sockets:
-            self.address = 'unix://var/run/cloudstate.sock'
+        """Start the user function and gRPC Server."""
+        address = '{}:{}'.format(os.environ.get('HOST', self.__host), os.environ.get('PORT', self.__port))
+        server = grpc.server(futures.ThreadPoolExecutor(max_workers=self.__workers))
+        add_EntityDiscoveryServicer_to_server(CloudStateEntityDiscoveryServicer(self.__event_sourced_entities), server)
+        add_EventSourcedServicer_to_server(CloudStateEventSourcedServicer(self.__event_sourced_entities), server)
 
-        server = grpc.server(futures.ThreadPoolExecutor(max_workers=self.workers))
-        add_EntityDiscoveryServicer_to_server(CloudStateEntityDiscoveryServicer(self.event_sourced_entities), server)
-        add_EventSourcedServicer_to_server(CloudStateEventSourcedServicer(self.event_sourced_entities), server)
-
-        logging.info('Starting Cloudstate on address %s', self.address)
+        logging.info('Starting Cloudstate on address %s', address)
         try:
-            server.add_insecure_port(self.address)
+            server.add_insecure_port(address)
             server.start()
         except IOError as e:
             logging.error('Error on start Cloudstate %s', e.__cause__)
