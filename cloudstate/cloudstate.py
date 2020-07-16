@@ -62,7 +62,7 @@ class CloudState:
         """Start the user function and gRPC Server."""
 
         if self.__use_domain_sockets is False:
-            self.__address: str = '{}:{}'.format(os.environ.get('HOST', self.__host), os.environ.get('PORT', self.__port))
+            self.__address = '{}:{}'.format(os.environ.get('HOST', self.__host), os.environ.get('PORT', self.__port))
 
         server = grpc.server(futures.ThreadPoolExecutor(max_workers=self.__workers))
         add_EntityDiscoveryServicer_to_server(CloudStateEntityDiscoveryServicer(self.__event_sourced_entities), server)
