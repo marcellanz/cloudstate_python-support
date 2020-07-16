@@ -17,6 +17,7 @@ from cloudstate.discovery_servicer import CloudStateEntityDiscoveryServicer
 from cloudstate.entity_pb2_grpc import add_EntityDiscoveryServicer_to_server
 
 import logging
+import multiprocessing
 
 from cloudstate.event_sourced_pb2_grpc import add_EventSourcedServicer_to_server
 
@@ -27,7 +28,7 @@ class CloudState:
 
     __host = '127.0.0.1'
     __port = '8080'
-    __workers = 10
+    __workers = multiprocessing.cpu_count()
     __use_domain_sockets: bool = False
     __address: str = ''
     __event_sourced_entities: List[EventSourcedEntity] = field(default_factory=list)
@@ -39,17 +40,23 @@ class CloudState:
         return self
 
     def host(self, address: str):
-        """Set the address of the network Host. If you use method use_uds(), this method is ignored."""
+        """Set the address of the network Host. If you use method use_uds(), this method is ignored.
+           Default is 127.0.0.1.
+        """
         self.__host = address
         return self
 
     def port(self, port: str):
-        """Set the address of the network Port. If you use method use_uds(), this method is ignored."""
+        """Set the address of the network Port. If you use method use_uds(), this method is ignored.
+        Default is 8080.
+        """
         self.__port = port
         return self
 
-    def max_workers(self, workers: Optional[int] = 10):
-        """Set the gRPC Server number of Workers."""
+    def max_workers(self, workers: Optional[int] = multiprocessing.cpu_count()):
+        """Set the gRPC Server number of Workers.
+           Default is equal than number of CPU Cores in the machine.
+        """
         self.__workers = workers
         return self
 
