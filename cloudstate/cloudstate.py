@@ -32,14 +32,14 @@ class CloudState:
     __workers = multiprocessing.cpu_count()
     __event_sourced_entities: List[EventSourcedEntity] = field(default_factory=list)
 
-    def host(self, address: Optional[str] = '127.0.0.1'):
+    def host(self, address: str):
         """Set the address of the network Host. If you use method use_uds(), this method is ignored.
            Default Address is 127.0.0.1.
         """
         self.__host = address
         return self
 
-    def port(self, port: Optional[str] = '8080'):
+    def port(self, port: str):
         """Set the address of the network Port. If you use method use_uds(), this method is ignored.
         Default Port is 8080.
         """
