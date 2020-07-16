@@ -29,10 +29,13 @@ class CloudState:
     __port = '8080'
     __workers = 10
     __use_domain_sockets: bool = False
+    __address: str = ''
     __event_sourced_entities: List[EventSourcedEntity] = field(default_factory=list)
 
-    def use_uds(self):
+    def use_uds(self, sock_address: Optional[str] = 'unix://var/run/cloudstate.sock'):
         self.__use_domain_sockets = True
+        if sock_address is not None:
+            self.__address = sock_address
         return self
 
     def host(self, address: str):
@@ -58,17 +61,16 @@ class CloudState:
     def start(self):
         """Start the user function and gRPC Server."""
 
-        address: str = '{}:{}'.format(os.environ.get('HOST', self.__host), os.environ.get('PORT', self.__port))
-        if self.__use_domain_sockets:
-            address = 'unix://var/run/cloudstate.sock'
+        if self.__use_domain_sockets is False:
+            self.__address: str = '{}:{}'.format(os.environ.get('HOST', self.__host), os.environ.get('PORT', self.__port))
 
         server = grpc.server(futures.ThreadPoolExecutor(max_workers=self.__workers))
         add_EntityDiscoveryServicer_to_server(CloudStateEntityDiscoveryServicer(self.__event_sourced_entities), server)
         add_EventSourcedServicer_to_server(CloudStateEventSourcedServicer(self.__event_sourced_entities), server)
 
-        logging.info('Starting Cloudstate on address %s', address)
+        logging.info('Starting Cloudstate on address %s', self.__address)
         try:
-            server.add_insecure_port(address)
+            server.add_insecure_port(self.__address)
             server.start()
         except IOError as e:
             logging.error('Error on start Cloudstate %s', e.__cause__)
