@@ -8,6 +8,6 @@ from shoppingcart.shopping_cart_entity import entity as shopping_cart_entity
 
 if __name__ == '__main__':
     CloudState()\
-        .port('8080')\
+        .use_uds()\
         .register_event_sourced_entity(shopping_cart_entity)\
         .start()

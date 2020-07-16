@@ -28,15 +28,20 @@ class CloudState:
     __host = '127.0.0.1'
     __port = '8080'
     __workers = 10
+    __use_domain_sockets: bool = False
     __event_sourced_entities: List[EventSourcedEntity] = field(default_factory=list)
 
+    def use_uds(self):
+        self.__use_domain_sockets = True
+        return self
+
     def host(self, address: str):
-        """Set the Network Host address."""
+        """Set the address of the network Host. If you use method use_uds(), this method is ignored."""
         self.__host = address
         return self
 
     def port(self, port: str):
-        """Set the Network Port address."""
+        """Set the address of the network Port. If you use method use_uds(), this method is ignored."""
         self.__port = port
         return self
 
@@ -52,7 +57,11 @@ class CloudState:
 
     def start(self):
         """Start the user function and gRPC Server."""
-        address = '{}:{}'.format(os.environ.get('HOST', self.__host), os.environ.get('PORT', self.__port))
+
+        address: str = '{}:{}'.format(os.environ.get('HOST', self.__host), os.environ.get('PORT', self.__port))
+        if self.__use_domain_sockets:
+            address = 'unix://var/run/cloudstate.sock'
+
         server = grpc.server(futures.ThreadPoolExecutor(max_workers=self.__workers))
         add_EntityDiscoveryServicer_to_server(CloudStateEntityDiscoveryServicer(self.__event_sourced_entities), server)
         add_EventSourcedServicer_to_server(CloudStateEventSourcedServicer(self.__event_sourced_entities), server)
