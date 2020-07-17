@@ -40,7 +40,7 @@ class CloudState:
         return self
 
     def port(self, port: str):
-        """Set the address of the network Port. If you use method use_uds(), this method is ignored.
+        """Set the address of the network Port.
         Default Port is 8080.
         """
         self.__port = port
