@@ -33,7 +33,7 @@ class CloudState:
     __event_sourced_entities: List[EventSourcedEntity] = field(default_factory=list)
 
     def host(self, address: str):
-        """Set the address of the network Host. If you use method use_uds(), this method is ignored.
+        """Set the address of the network Host.
            Default Address is 127.0.0.1.
         """
         self.__host = address
