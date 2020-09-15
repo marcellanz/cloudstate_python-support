@@ -9,6 +9,7 @@ jobs:
   - stage: build
     install:
       - pip install -r requirements.txt
+      - pip install . -vvv
     script: pytest
     deploy:
       provider: pypi
