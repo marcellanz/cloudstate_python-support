@@ -4,9 +4,6 @@ Licensed under the Apache License, Version 2.0.
 """
 
 import logging
-import threading
-
-import pytest
 
 from cloudstate.cloudstate import CloudState
 from cloudstate.test.functiondemo.function_definition import definition, definition2

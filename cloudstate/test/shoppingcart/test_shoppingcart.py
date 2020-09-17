@@ -1,14 +1,16 @@
+"""
+Copyright 2020 Lightbend Inc.
+Licensed under the Apache License, Version 2.0.
+"""
+
+import logging
 import time
 
 import grpc
 
-
-import logging
-
-from cloudstate.test.shoppingcart.shoppingcart_pb2 import GetShoppingCart, AddLineItem
-from cloudstate.test.shoppingcart.shoppingcart_pb2_grpc import ShoppingCartStub
-
 from cloudstate.test.run_test_server import run_test_server
+from cloudstate.test.shoppingcart.shoppingcart_pb2 import AddLineItem, GetShoppingCart
+from cloudstate.test.shoppingcart.shoppingcart_pb2_grpc import ShoppingCartStub
 
 logger = logging.getLogger()
 
@@ -35,9 +37,16 @@ def evaluate_shoppingcart_server(host: str, port: int):
 def test_shoppingcart():
     server_thread = run_test_server(port=8081)
     import docker
+
     client = docker.from_env()
     # client.images.pull('cloudstateio/cloudstate-proxy-dev-mode:latest')
-    container = client.containers.run("cloudstateio/cloudstate-proxy-dev-mode", environment={"USER_FUNCTION_HOST":"127.0.0.1", "USER_FUNCTION_PORT":"8081"},detach=True, ports={'9000/tcp': 9000}, network="host")
+    container = client.containers.run(
+        "cloudstateio/cloudstate-proxy-dev-mode",
+        environment={"USER_FUNCTION_HOST": "127.0.0.1", "USER_FUNCTION_PORT": "8081"},
+        detach=True,
+        ports={"9000/tcp": 9000},
+        network="host",
+    )
     logger.info(f"status {container.status}")
     try:
         time.sleep(15)

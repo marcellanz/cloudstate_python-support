@@ -6,8 +6,8 @@ Licensed under the Apache License, Version 2.0.
 import sys
 from logging import getLogger
 
-from cloudstate.test.run_test_server import run_test_server
 from cloudstate.test.functiondemo.test_functiondemo import evaluate_functiondemo_server
+from cloudstate.test.run_test_server import run_test_server
 from cloudstate.test.shoppingcart.test_shoppingcart import evaluate_shoppingcart_server
 
 logger = getLogger()

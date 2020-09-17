@@ -4,6 +4,7 @@ Licensed under the Apache License, Version 2.0.
 """
 
 import inspect
+import logging
 from dataclasses import dataclass, field
 from typing import Callable, List, MutableMapping
 
@@ -11,7 +12,6 @@ from google.protobuf import descriptor as _descriptor
 
 from cloudstate.function_pb2 import _STATELESSFUNCTION
 from cloudstate.stateless_function_context import StatelessFunctionContext
-import logging
 
 
 @dataclass

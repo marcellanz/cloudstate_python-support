@@ -7,9 +7,7 @@ import logging
 from pprint import pprint
 from typing import List
 
-from cloudstate.utils.payload_utils import get_payload, pack
 from google.protobuf import symbol_database as _symbol_database
-from google.protobuf.any_pb2 import Any
 
 from cloudstate.entity_pb2 import Command
 from cloudstate.event_sourced_context import (
@@ -26,6 +24,7 @@ from cloudstate.event_sourced_pb2 import (
     EventSourcedStreamOut,
 )
 from cloudstate.event_sourced_pb2_grpc import EventSourcedServicer
+from cloudstate.utils.payload_utils import get_payload, pack
 
 _sym_db = _symbol_database.Default()
 

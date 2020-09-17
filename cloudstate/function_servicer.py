@@ -7,9 +7,7 @@ import logging
 from typing import List
 
 import grpc
-from cloudstate.utils.payload_utils import get_payload
 from google.protobuf import symbol_database as _symbol_database
-from google.protobuf.any_pb2 import Any
 from grpc._server import _RequestIterator
 
 from cloudstate.entity_pb2 import ClientAction
@@ -20,6 +18,7 @@ from cloudstate.stateless_function_entity import (
     StatelessFunction,
     StatelessFunctionHandler,
 )
+from cloudstate.utils.payload_utils import get_payload
 
 _sym_db = _symbol_database.Default()
 

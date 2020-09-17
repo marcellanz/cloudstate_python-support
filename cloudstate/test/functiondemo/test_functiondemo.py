@@ -86,9 +86,16 @@ def evaluate_functiondemo_server(host: str, port: int):
 def test_functiondemo():
     server_thread = run_test_server(port=8080)
     import docker
+
     client = docker.from_env()
-    client.images.pull('cloudstateio/cloudstate-proxy-dev-mode:latest')
-    container = client.containers.run("cloudstateio/cloudstate-proxy-dev-mode", environment={"USER_FUNCTION_HOST":"127.0.0.1", "USER_FUNCTION_PORT":"8080"},detach=True, ports={'9000/tcp': 9000}, network="host")
+    client.images.pull("cloudstateio/cloudstate-proxy-dev-mode:latest")
+    container = client.containers.run(
+        "cloudstateio/cloudstate-proxy-dev-mode",
+        environment={"USER_FUNCTION_HOST": "127.0.0.1", "USER_FUNCTION_PORT": "8080"},
+        detach=True,
+        ports={"9000/tcp": 9000},
+        network="host",
+    )
     logger.info(f"status {container.status}")
     try:
         time.sleep(15)
