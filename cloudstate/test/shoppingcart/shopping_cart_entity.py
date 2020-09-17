@@ -91,7 +91,6 @@ def item_removed(state: ShoppingCartState, event: ItemRemoved):
 def get_cart(
     state: ShoppingCartState, item: GetShoppingCart, ctx: EventSourcedCommandContext
 ):
-    print(f"get shopping cart: {item}")
     cart = Cart()
     cart.items.extend(state.cart.values())
 

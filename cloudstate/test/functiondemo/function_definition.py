@@ -84,4 +84,4 @@ def reverse_string2(
         ctx.fail("Intentionally failed.")
 
     else:
-        return FunctionResponse(bar=arg.foo[::-1] + "!")
+        return FunctionResponse2(bar=arg.foo[::-1] + "!")

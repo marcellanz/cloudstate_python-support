@@ -4,6 +4,10 @@ python:
   - "3.8"
 services:
   - docker
+
+#before_install:
+#  - docker pull cloudstateio/cloudstate-proxy-dev-mode:latest
+
 jobs:
   include:
 
