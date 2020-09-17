@@ -1,3 +1,5 @@
+import time
+
 import grpc
 
 
@@ -31,6 +33,17 @@ def evaluate_shoppingcart_server(host: str, port: int):
 
 
 def test_shoppingcart():
-    server_thread = run_test_server(port=8080)
-    evaluate_shoppingcart_server("localhost", 8080)
-    server_thread.stop()
+    server_thread = run_test_server(port=8081)
+    import docker
+    client = docker.from_env()
+    container = client.containers.run("cloudstateio/cloudstate-proxy-dev-mode", environment={"USER_FUNCTION_HOST":"127.0.0.1", "USER_FUNCTION_PORT":"8081"},detach=True, ports={'9000/tcp': 9000}, network="host")
+    logger.info(f"status {container.status}")
+    try:
+        time.sleep(15)
+        evaluate_shoppingcart_server("127.0.0.1", 9000)
+    except Exception as e:
+        raise e
+    finally:
+        server_thread.stop(None)
+        logger.info(container.logs())
+        container.stop()

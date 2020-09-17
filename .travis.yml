@@ -2,7 +2,8 @@ language: python
 
 python:
   - "3.8"
-
+services:
+  - docker
 jobs:
   include:
 
@@ -10,7 +11,7 @@ jobs:
     install:
       - pip install -r requirements.txt
       - pip install .
-    script: pytest --import-mode importlib
+    script: pytest --import-mode=importlib
     deploy:
       provider: pypi
       username: "__token__"
