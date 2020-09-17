@@ -4,6 +4,7 @@ Licensed under the Apache License, Version 2.0.
 """
 
 import logging
+import time
 
 import grpc
 import pytest
@@ -26,6 +27,7 @@ def evaluate_functiondemo_server(host: str, port: int):
     logger.info(f"connecting on {server_hostport}")
     channel = grpc.insecure_channel(server_hostport)
 
+    logger.info("channel established.")
     stub = FunctionDemoStub(channel)
     request_oof = FunctionRequest(foo="oof")
     response = stub.ReverseString(request_oof)
@@ -83,5 +85,16 @@ def evaluate_functiondemo_server(host: str, port: int):
 
 def test_functiondemo():
     server_thread = run_test_server(port=8080)
-    evaluate_functiondemo_server("localhost", 8080)
-    server_thread.stop()
+    import docker
+    client = docker.from_env()
+    container = client.containers.run("cloudstateio/cloudstate-proxy-dev-mode", environment={"USER_FUNCTION_HOST":"127.0.0.1", "USER_FUNCTION_PORT":"8080"},detach=True, ports={'9000/tcp': 9000}, network="host")
+    logger.info(f"status {container.status}")
+    try:
+        time.sleep(15)
+        evaluate_functiondemo_server("127.0.0.1", 9000)
+    except Exception as e:
+        raise e
+    finally:
+        server_thread.stop(None)
+        logger.info(container.logs())
+        container.stop()

@@ -65,6 +65,7 @@ setup(
         "pytest>=5.4.2",
         "six>=1.14.0",
         "grpcio-reflection>=1.28.1e",
+        "docker"
     ],
     cmdclass={
         "build_py": FetchBuildProtosCommand,
