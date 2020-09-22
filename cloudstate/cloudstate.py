@@ -52,7 +52,7 @@ class CloudState:
 
     def max_workers(self, workers: Optional[int] = multiprocessing.cpu_count()):
         """Set the gRPC Server number of Workers.
-        Default is equal than number of CPU Cores in the machine.
+        Default is equal to the number of CPU Cores in the machine.
         """
         self.__workers = workers
         return self
