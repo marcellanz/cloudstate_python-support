@@ -21,7 +21,6 @@ finally() {
     docker rm -f $PROXY_NAME
     docker rm -f $USER_FUNCTION_NAME
     docker rm -f $FUNCTION_CLIENT_NAME
-    docker rm -f $PYTHON_TCK_NAME
     docker rmi $PYTHON_TCK_NAME
 
     docker network rm $NETWORK_NAME
