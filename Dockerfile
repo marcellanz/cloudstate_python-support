@@ -2,7 +2,9 @@ FROM python:3.8.0-slim
 
 WORKDIR /python-support
 
-RUN apt-get update && apt-get install -y curl
+RUN apt-get update && \
+    apt-get -y upgrade && \
+    apt-get install -y curl --no-install-recommends
 COPY ./requirements.txt /python-support/requirements.txt
 RUN pip install -r /python-support/requirements.txt
 COPY ./scripts /python-support/scripts
