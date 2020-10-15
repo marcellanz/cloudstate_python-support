@@ -12,7 +12,7 @@ python3 -m grpc_tools.protoc -Iprotobuf/protocol --python_out=${1:-.} --grpc_pyt
 python3 -m grpc_tools.protoc -Iprotobuf/protocol -Iprotobuf/frontend --python_out=${1:-.} --grpc_python_out=${1:-.} ./protobuf/protocol/cloudstate/crdt.proto
 
 python3 -m grpc_tools.protoc -Iprotobuf/protocol --python_out=${1:-.} --grpc_python_out=${1:-.} ./protobuf/protocol/cloudstate/event_sourced.proto
-python3 -m grpc_tools.protoc -Iprotobuf/protocol -Iprotobuf/frontend --python_out=${1:-.} --grpc_python_out=${1:-.} ./protobuf/protocol/cloudstate/function.proto
+python3 -m grpc_tools.protoc -Iprotobuf/protocol -Iprotobuf/frontend --python_out=${1:-.} --grpc_python_out=${1:-.} ./protobuf/protocol/cloudstate/action.proto
 python3 -m grpc_tools.protoc -Iprotobuf/frontend --python_out=${1:-.} --grpc_python_out=${1:-.} ./protobuf/frontend/cloudstate/entity_key.proto
 python3 -m grpc_tools.protoc -Iprotobuf/frontend --python_out=${1:-.} --grpc_python_out=${1:-.} ./protobuf/frontend/cloudstate/eventing.proto
 

@@ -17,7 +17,7 @@ tag=$1
 # Cloudstate protocol
 fetch "protocol/cloudstate/entity.proto" $tag
 fetch "protocol/cloudstate/event_sourced.proto" $tag
-fetch "protocol/cloudstate/function.proto" $tag
+fetch "protocol/cloudstate/action.proto" $tag
 fetch "protocol/cloudstate/crdt.proto" $tag
 
 # TCK shopping cart example

@@ -23,7 +23,7 @@ def run_test_server(
         )
     if run_function_demo:
         logger.info("adding functiondemo service")
-        server_builder = server_builder.register_stateless_function_entity(definition)
-        server_builder = server_builder.register_stateless_function_entity(definition2)
+        server_builder = server_builder.register_action_entity(definition)
+        server_builder = server_builder.register_action_entity(definition2)
 
     return server_builder.start()
