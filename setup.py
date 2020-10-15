@@ -59,7 +59,7 @@ setup(
         "attrs>=19.3.0",
         "google-api>=0.1.12",
         "googleapis-common-protos >= 1.51.0",
-        # "grpcio>=1.28.1",
+        "grpcio>=1.31.0",
         "grpcio-tools>=1.31.0",
         "protobuf>=3.11.3",
         "pytest>=5.4.2",
