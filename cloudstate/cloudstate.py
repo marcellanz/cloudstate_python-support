@@ -92,15 +92,6 @@ class CloudState:
             server,
         )
 
-        # SERVICE_NAMES = [reflection.SERVICE_NAME]
-        # for service in self.__action_protocol_entities +  self.__event_sourced_entities:
-        #     for method in service.service_descriptor.methods_by_name.values():
-        #         name = method.full_name
-        #         logging.info(f"adding {name} to reflection api.")
-        #         SERVICE_NAMES.append(name)
-
-        # reflection.enable_server_reflection(SERVICE_NAMES, server)
-
         logging.info("Starting Cloudstate on address %s", self.__address)
         try:
             server.add_insecure_port(self.__address)
