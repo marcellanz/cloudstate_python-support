@@ -13,7 +13,7 @@ COPY ./cloudstate /python-support/cloudstate
 COPY ./setup.py /python-support/setup.py
 COPY ./Description.md /python-support/Description.md
 
-
+# RUN /python-support/scripts/fetch-cloudstate-pb.sh master
 RUN pip install . -vvv
 
 WORKDIR /

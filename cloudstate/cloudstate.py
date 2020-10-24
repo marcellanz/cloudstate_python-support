@@ -10,6 +10,7 @@ from dataclasses import dataclass, field
 from typing import List, Optional
 
 import grpc
+
 # from grpc_reflection.v1alpha import reflection
 
 from cloudstate.discovery_servicer import CloudStateEntityDiscoveryServicer

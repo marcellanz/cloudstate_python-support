@@ -7,29 +7,27 @@ from typing import Iterator
 
 from cloudstate.action_context import ActionContext
 from cloudstate.action_protocol_entity import Action
-from cloudstate.test.functiondemo.functiondemo2_pb2 import _FUNCTIONDEMO2
-from cloudstate.test.functiondemo.functiondemo2_pb2 import (
+from cloudstate.test.actiondemo.actiondemo2_pb2 import _ActionDemo2
+from cloudstate.test.actiondemo.actiondemo2_pb2 import (
     DESCRIPTOR as FILE_DESCRIPTOR2,
 )
-from cloudstate.test.functiondemo.functiondemo2_pb2 import (
+from cloudstate.test.actiondemo.actiondemo2_pb2 import (
     FunctionRequest2,
     FunctionResponse2,
 )
-from cloudstate.test.functiondemo.functiondemo_pb2 import _FUNCTIONDEMO
-from cloudstate.test.functiondemo.functiondemo_pb2 import DESCRIPTOR as FILE_DESCRIPTOR
-from cloudstate.test.functiondemo.functiondemo_pb2 import (
+from cloudstate.test.actiondemo.actiondemo_pb2 import _ActionDemo
+from cloudstate.test.actiondemo.actiondemo_pb2 import DESCRIPTOR as FILE_DESCRIPTOR
+from cloudstate.test.actiondemo.actiondemo_pb2 import (
     FunctionRequest,
     FunctionResponse,
     SumTotal,
 )
 
-definition = Action(_FUNCTIONDEMO, [FILE_DESCRIPTOR])
+definition = Action(_ActionDemo, [FILE_DESCRIPTOR])
 
 
 @definition.unary_handler("ReverseString")
-def reverse_string(
-    arg: FunctionRequest, ctx: ActionContext
-) -> FunctionResponse:
+def reverse_string(arg: FunctionRequest, ctx: ActionContext) -> FunctionResponse:
     if arg.foo == "boom":
         ctx.fail("Intentionally failed.")
     else:
@@ -37,9 +35,7 @@ def reverse_string(
 
 
 @definition.stream_handler("ReverseStrings")
-def reverse_strings(
-    arg: Iterator, ctx: ActionContext
-) -> Iterator[FunctionResponse]:
+def reverse_strings(arg: Iterator, ctx: ActionContext) -> Iterator[FunctionResponse]:
     for element in arg:
         if element.foo == "boom":
             ctx.fail("Intentionally failed.")
@@ -63,9 +59,7 @@ def sum_stream(
 
 
 @definition.stream_out_handler("SillyLetterStream")
-def silly_letter_stream(
-    arg: FunctionRequest, ctx: ActionContext
-) -> SumTotal:
+def silly_letter_stream(arg: FunctionRequest, ctx: ActionContext) -> SumTotal:
     if arg.foo == "nope":
         ctx.fail("Intentionally failed.")
     letters = list(arg.foo)
@@ -73,13 +67,11 @@ def silly_letter_stream(
         yield FunctionResponse(bar=letter + "!!")
 
 
-definition2 = Action(_FUNCTIONDEMO2, [FILE_DESCRIPTOR2])
+definition2 = Action(_ActionDemo2, [FILE_DESCRIPTOR2])
 
 
 @definition2.unary_handler("ReverseString2")
-def reverse_string2(
-    arg: FunctionRequest2, ctx: ActionContext
-) -> FunctionResponse2:
+def reverse_string2(arg: FunctionRequest2, ctx: ActionContext) -> FunctionResponse2:
     if arg.foo == "boom":
         ctx.fail("Intentionally failed.")
 

@@ -7,6 +7,7 @@ set -o pipefail
 function fetch() {
   local path=$1
   local tag=$2
+  local root=$3
   mkdir -p protobuf/$(dirname $path)
   curl -o protobuf/${path} https://raw.githubusercontent.com/cloudstateio/cloudstate/${tag}/protocols/${path}
   #sed 's/^option java_package.*/option go_package = "${go_package}";/' protobuf/${path}

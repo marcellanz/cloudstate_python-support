@@ -9,32 +9,32 @@ import time
 import grpc
 import pytest
 
-from cloudstate.test.functiondemo.functiondemo2_pb2 import FunctionRequest2
-from cloudstate.test.functiondemo.functiondemo2_pb2_grpc import FunctionDemo2Stub
-from cloudstate.test.functiondemo.functiondemo_pb2 import (
+from cloudstate.test.actiondemo.actiondemo2_pb2 import FunctionRequest2
+from cloudstate.test.actiondemo.actiondemo2_pb2_grpc import ActionDemo2Stub
+from cloudstate.test.actiondemo.actiondemo_pb2 import (
     AddToSum,
     FunctionRequest,
     FunctionResponse,
 )
-from cloudstate.test.functiondemo.functiondemo_pb2_grpc import FunctionDemoStub
+from cloudstate.test.actiondemo.actiondemo_pb2_grpc import ActionDemoStub
 from cloudstate.test.run_test_server import run_test_server
 
 logger = logging.getLogger()
 
 
-def evaluate_functiondemo_server(host: str, port: int):
+def evaluate_ActionDemo_server(host: str, port: int):
     server_hostport = f"{host}:{port}"
     logger.info(f"connecting on {server_hostport}")
     channel = grpc.insecure_channel(server_hostport)
 
     logger.info("channel established.")
-    stub = FunctionDemoStub(channel)
+    stub = ActionDemoStub(channel)
     request_oof = FunctionRequest(foo="oof")
     response = stub.ReverseString(request_oof)
     logger.info(f"resp: {response}")
     assert response.bar == "foo"
 
-    stub2 = FunctionDemo2Stub(channel)
+    stub2 = ActionDemo2Stub(channel)
     response = stub2.ReverseString2(request_oof)
     logger.info(f"resp: {response}")
     assert response.bar == "foo!"
@@ -83,7 +83,7 @@ def evaluate_functiondemo_server(host: str, port: int):
             logger.info(i)
 
 
-def test_functiondemo():
+def test_ActionDemo():
     server_thread = run_test_server(port=8080)
     import docker
 
@@ -99,7 +99,7 @@ def test_functiondemo():
     logger.info(f"status {container.status}")
     try:
         time.sleep(15)
-        evaluate_functiondemo_server("127.0.0.1", 9000)
+        evaluate_ActionDemo_server("127.0.0.1", 9000)
     except Exception as e:
         raise e
     finally:

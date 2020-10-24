@@ -61,7 +61,7 @@ docker rm -f $USER_FUNCTION_NAME
 #  secondary integration tests for stateless function:
 docker run -d --network $NETWORK_NAME --name $USER_FUNCTION_NAME -p 8080:8080 $PYTHON_TCK_NAME \
     server \
-    functiondemo \
+    ActionDemo \
     shoppingcart
 sleep 5
 docker run -d --network $NETWORK_NAME --name $PROXY_NAME -p 9000:9000 \
@@ -72,7 +72,7 @@ sleep 5
 docker run --network $NETWORK_NAME --name $FUNCTION_CLIENT_NAME $PYTHON_TCK_NAME \
     client \
     server_host $PROXY_NAME \
-    functiondemo \
+    ActionDemo \
     shoppingcart
 
 status1=$?

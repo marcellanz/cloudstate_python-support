@@ -18,8 +18,8 @@ python3 -m grpc_tools.protoc -Iprotobuf/frontend --python_out=${1:-.} --grpc_pyt
 
 python3 -m grpc_tools.protoc -Iprotobuf/example -Iprotobuf/frontend --python_out=${1:-.} --grpc_python_out=${1:-.} ./protobuf/example/shoppingcart/shoppingcart.proto
 python3 -m grpc_tools.protoc -Iprotobuf/example -Iprotobuf/frontend --python_out=${1:-.} --grpc_python_out=${1:-.} ./protobuf/example/shoppingcart/persistence/domain.proto
-python3 -m grpc_tools.protoc -Iprotobuf/example -Iprotobuf/frontend --python_out=${1:-.} --grpc_python_out=${1:-.} ./protobuf/example/functiondemo/functiondemo.proto
-python3 -m grpc_tools.protoc -Iprotobuf/example -Iprotobuf/frontend --python_out=${1:-.} --grpc_python_out=${1:-.} ./protobuf/example/functiondemo/functiondemo2.proto
+python3 -m grpc_tools.protoc -Iprotobuf/example -Iprotobuf/frontend --python_out=${1:-.} --grpc_python_out=${1:-.} ./protobuf/example/ActionDemo/ActionDemo.proto
+python3 -m grpc_tools.protoc -Iprotobuf/example -Iprotobuf/frontend --python_out=${1:-.} --grpc_python_out=${1:-.} ./protobuf/example/ActionDemo/ActionDemo2.proto
 
 # optional
 #python3 -m grpc_tools.protoc -Iprotobuf/ --python_out=. --grpc_python_out=. ./protobuf/proxy/grpc/reflection/v1alpha/reflection.proto

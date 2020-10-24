@@ -65,9 +65,7 @@ class CloudStateActionProtocolServicer(ActionProtocolServicer):
         peek = request_iterator.next()  # evidently, the first message has no payload
         # and is probably intended to prime the stream handler.
         if peek.service_name in self.action_protocol_entities:
-            handler = ActionHandler(
-                self.action_protocol_entities[peek.service_name]
-            )
+            handler = ActionHandler(self.action_protocol_entities[peek.service_name])
             logging.debug(f"set stream handler to {peek.service_name}")
         else:
             context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -102,9 +100,7 @@ class CloudStateActionProtocolServicer(ActionProtocolServicer):
         # and is probably intended to prime the stream handler.
         logging.debug(f"peeked: {peek}")
         if peek.service_name in self.action_protocol_entities:
-            handler = ActionHandler(
-                self.action_protocol_entities[peek.service_name]
-            )
+            handler = ActionHandler(self.action_protocol_entities[peek.service_name])
             logging.debug(f"set stream in handler to {peek.service_name}")
         else:
             context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -135,9 +131,7 @@ class CloudStateActionProtocolServicer(ActionProtocolServicer):
 
     def handleStreamedOut(self, request, context):
         if request.service_name in self.action_protocol_entities:
-            handler = ActionHandler(
-                self.action_protocol_entities[request.service_name]
-            )
+            handler = ActionHandler(self.action_protocol_entities[request.service_name])
         else:
             context.set_code(grpc.StatusCode.UNIMPLEMENTED)
             context.set_details("Method not implemented!")
