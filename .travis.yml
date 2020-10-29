@@ -12,6 +12,8 @@ jobs:
   include:
 
   - stage: codestyle
+    install:
+      - pip install black
     script: black --check .
   - stage: build
     install:
