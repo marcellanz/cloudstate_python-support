@@ -86,7 +86,7 @@ def test_ActionDemo():
     import docker
 
     client = docker.from_env()
-    client.images.pull("cloudstateio/cloudstate-proxy-dev-mode:0.5.1-98-a596eae7")
+    client.images.pull("cloudstateio/cloudstate-proxy-dev-mode:latest")
     container = client.containers.run(
         "cloudstateio/cloudstate-proxy-dev-mode:0.5.1-98-a596eae7",
         environment={"USER_FUNCTION_HOST": "127.0.0.1", "USER_FUNCTION_PORT": "8080"},
