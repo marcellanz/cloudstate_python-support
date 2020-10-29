@@ -35,7 +35,7 @@ class FetchBuildProtosCommand(build_py):
                     file_path = pathlib.Path(root) / file
                     destination = "."
                     print(f"compiling {file_path} to {destination}")
-                    command = f"python -m grpc_tools.protoc {' '.join([' -I ' + i for i in proto_roots + proto_lib_roots])} --python_out={destination} --grpc_python_out={destination} {file_path}"
+                    command = f"python -m grpc_tools.protoc {' '.join([' -I ' + i for i in proto_roots + proto_lib_roots])} --python_out={destination} --grpc_python_out={destination} {file_path}"  # noqa
                     os.system(command)
 
         return super().run()
