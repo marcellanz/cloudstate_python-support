@@ -9,14 +9,15 @@ from logging import getLogger
 from pprint import pprint
 from typing import List
 
-from google.protobuf.descriptor_pb2 import FileDescriptorProto, FileDescriptorSet
+from google.protobuf.descriptor_pb2 import (FileDescriptorProto,
+                                            FileDescriptorSet)
 from google.protobuf.descriptor_pool import Default
 from google.protobuf.empty_pb2 import Empty
 
 from cloudstate import entity_pb2
+from cloudstate.action_protocol_entity import Action
 from cloudstate.entity_pb2_grpc import EntityDiscoveryServicer
 from cloudstate.event_sourced_entity import EventSourcedEntity
-from cloudstate.action_protocol_entity import Action
 
 logger = getLogger()
 

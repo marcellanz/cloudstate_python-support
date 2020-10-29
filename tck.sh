@@ -34,16 +34,12 @@ docker build -t $PYTHON_TCK_NAME ./
 docker network create $NETWORK_NAME
 
 #  primary tck tests for shopping cart
-docker run -d --network $NETWORK_NAME --name $USER_FUNCTION_NAME -p 8080:8080 $PYTHON_TCK_NAME \
-    server \
-    shoppingcart
-sleep 2
+docker run -d --network $NETWORK_NAME --name $USER_FUNCTION_NAME -p 8080:8080 $PYTHON_TCK_NAME server shoppingcart
 docker run -d --network $NETWORK_NAME --name $PROXY_NAME -p 9000:9000 \
     -e USER_FUNCTION_HOST=$TCK_NAME \
     -e USER_FUNCTION_PORT=8090 \
-    -e HTTP_PORT=9000 \
-    $PROXY_IMAGE
-sleep 2
+    $PROXY_IMAGE \
+    -e HTTP_PORT=9000
 docker run --rm --network $NETWORK_NAME --name $TCK_NAME -p 8090:8090 \
     -e TCK_HOST=0.0.0.0 \
     -e TCK_PORT=8090 \
@@ -54,6 +50,9 @@ docker run --rm --network $NETWORK_NAME --name $TCK_NAME -p 8090:8090 \
     $TCK_IMAGE
 
 status=$?
+docker container logs $PROXY_NAME
+docker container logs $USER_FUNCTION_NAME
+
 echo "Removing docker containers"
 docker rm -f $PROXY_NAME
 docker rm -f $USER_FUNCTION_NAME
@@ -77,7 +76,6 @@ docker run --network $NETWORK_NAME --name $FUNCTION_CLIENT_NAME $PYTHON_TCK_NAME
 
 status1=$?
 
-docker container logs $PROXY_NAME
 
 RETURNSTATUS=1
 if [ "${status1}" == 0 ] && [ "${status}" == 0 ]; then

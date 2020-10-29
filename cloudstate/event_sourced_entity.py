@@ -9,11 +9,9 @@ from typing import Any, Callable, List, MutableMapping
 
 from google.protobuf import descriptor as _descriptor
 
-from cloudstate.event_sourced_context import (
-    EventContext,
-    EventSourcedCommandContext,
-    SnapshotContext,
-)
+from cloudstate.event_sourced_context import (EventContext,
+                                              EventSourcedCommandContext,
+                                              SnapshotContext)
 from cloudstate.event_sourced_pb2 import _EVENTSOURCED
 
 

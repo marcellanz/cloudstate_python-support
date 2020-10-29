@@ -10,19 +10,15 @@ from typing import List
 from google.protobuf import symbol_database as _symbol_database
 
 from cloudstate.entity_pb2 import Command
-from cloudstate.event_sourced_context import (
-    EventContext,
-    EventSourcedCommandContext,
-    SnapshotContext,
-)
-from cloudstate.event_sourced_entity import EventSourcedEntity, EventSourcedHandler
-from cloudstate.event_sourced_pb2 import (
-    EventSourcedEvent,
-    EventSourcedInit,
-    EventSourcedReply,
-    EventSourcedSnapshot,
-    EventSourcedStreamOut,
-)
+from cloudstate.event_sourced_context import (EventContext,
+                                              EventSourcedCommandContext,
+                                              SnapshotContext)
+from cloudstate.event_sourced_entity import (EventSourcedEntity,
+                                             EventSourcedHandler)
+from cloudstate.event_sourced_pb2 import (EventSourcedEvent, EventSourcedInit,
+                                          EventSourcedReply,
+                                          EventSourcedSnapshot,
+                                          EventSourcedStreamOut)
 from cloudstate.event_sourced_pb2_grpc import EventSourcedServicer
 from cloudstate.utils.payload_utils import get_payload, pack
 

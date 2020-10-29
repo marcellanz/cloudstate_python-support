@@ -11,16 +11,18 @@ from typing import List, Optional
 
 import grpc
 
-# from grpc_reflection.v1alpha import reflection
-
+from cloudstate.action_pb2_grpc import add_ActionProtocolServicer_to_server
+from cloudstate.action_protocol_entity import Action
+from cloudstate.action_servicer import CloudStateActionProtocolServicer
 from cloudstate.discovery_servicer import CloudStateEntityDiscoveryServicer
 from cloudstate.entity_pb2_grpc import add_EntityDiscoveryServicer_to_server
 from cloudstate.event_sourced_entity import EventSourcedEntity
-from cloudstate.event_sourced_pb2_grpc import add_EventSourcedServicer_to_server
+from cloudstate.event_sourced_pb2_grpc import \
+    add_EventSourcedServicer_to_server
 from cloudstate.eventsourced_servicer import CloudStateEventSourcedServicer
-from cloudstate.action_pb2_grpc import add_ActionProtocolServicer_to_server
-from cloudstate.action_servicer import CloudStateActionProtocolServicer
-from cloudstate.action_protocol_entity import Action
+
+# from grpc_reflection.v1alpha import reflection
+
 
 
 @dataclass

@@ -11,11 +11,9 @@ import pytest
 
 from cloudstate.test.actiondemo.actiondemo2_pb2 import FunctionRequest2
 from cloudstate.test.actiondemo.actiondemo2_pb2_grpc import ActionDemo2Stub
-from cloudstate.test.actiondemo.actiondemo_pb2 import (
-    AddToSum,
-    FunctionRequest,
-    FunctionResponse,
-)
+from cloudstate.test.actiondemo.actiondemo_pb2 import (AddToSum,
+                                                       FunctionRequest,
+                                                       FunctionResponse)
 from cloudstate.test.actiondemo.actiondemo_pb2_grpc import ActionDemoStub
 from cloudstate.test.run_test_server import run_test_server
 

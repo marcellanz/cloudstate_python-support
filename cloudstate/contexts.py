@@ -5,7 +5,8 @@ Licensed under the Apache License, Version 2.0.
 
 from typing import List
 
-from cloudstate.entity_pb2 import ClientAction, Failure, Forward, Reply, SideEffect
+from cloudstate.entity_pb2 import (ClientAction, Failure, Forward, Reply,
+                                   SideEffect)
 
 
 class Context:

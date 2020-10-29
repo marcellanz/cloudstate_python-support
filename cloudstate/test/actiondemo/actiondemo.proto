@@ -2,7 +2,7 @@ syntax = "proto3";
 import "google/api/annotations.proto";
 import "google/api/http.proto";
 
-package com.example.ActionDemo;
+package com.example.actiondemo;
 
 message FunctionRequest{
     string foo = 1;

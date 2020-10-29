@@ -7,18 +7,14 @@ import logging
 from typing import List
 
 import grpc
-from cloudstate.action_pb2 import ActionCommand
 from google.protobuf import symbol_database as _symbol_database
 from grpc._server import _RequestIterator
 
-from cloudstate.entity_pb2 import ClientAction
+from cloudstate.action_context import ActionContext
 from cloudstate.action_pb2 import ActionCommand, ActionResponse
 from cloudstate.action_pb2_grpc import ActionProtocolServicer
-from cloudstate.action_context import ActionContext
-from cloudstate.action_protocol_entity import (
-    Action,
-    ActionHandler,
-)
+from cloudstate.action_protocol_entity import Action, ActionHandler
+from cloudstate.entity_pb2 import ClientAction
 from cloudstate.utils.payload_utils import get_payload
 
 _sym_db = _symbol_database.Default()

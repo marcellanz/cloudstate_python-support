@@ -7,23 +7,19 @@ from typing import Iterator
 
 from cloudstate.action_context import ActionContext
 from cloudstate.action_protocol_entity import Action
-from cloudstate.test.actiondemo.actiondemo2_pb2 import _ActionDemo2
-from cloudstate.test.actiondemo.actiondemo2_pb2 import (
-    DESCRIPTOR as FILE_DESCRIPTOR2,
-)
-from cloudstate.test.actiondemo.actiondemo2_pb2 import (
-    FunctionRequest2,
-    FunctionResponse2,
-)
-from cloudstate.test.actiondemo.actiondemo_pb2 import _ActionDemo
-from cloudstate.test.actiondemo.actiondemo_pb2 import DESCRIPTOR as FILE_DESCRIPTOR
-from cloudstate.test.actiondemo.actiondemo_pb2 import (
-    FunctionRequest,
-    FunctionResponse,
-    SumTotal,
-)
+from cloudstate.test.actiondemo.actiondemo2_pb2 import _ACTIONDEMO2
+from cloudstate.test.actiondemo.actiondemo2_pb2 import \
+    DESCRIPTOR as FILE_DESCRIPTOR2
+from cloudstate.test.actiondemo.actiondemo2_pb2 import (FunctionRequest2,
+                                                        FunctionResponse2)
+from cloudstate.test.actiondemo.actiondemo_pb2 import _ACTIONDEMO
+from cloudstate.test.actiondemo.actiondemo_pb2 import \
+    DESCRIPTOR as FILE_DESCRIPTOR
+from cloudstate.test.actiondemo.actiondemo_pb2 import (FunctionRequest,
+                                                       FunctionResponse,
+                                                       SumTotal)
 
-definition = Action(_ActionDemo, [FILE_DESCRIPTOR])
+definition = Action(_ACTIONDEMO, [FILE_DESCRIPTOR])
 
 
 @definition.unary_handler("ReverseString")
@@ -67,7 +63,7 @@ def silly_letter_stream(arg: FunctionRequest, ctx: ActionContext) -> SumTotal:
         yield FunctionResponse(bar=letter + "!!")
 
 
-definition2 = Action(_ActionDemo2, [FILE_DESCRIPTOR2])
+definition2 = Action(_ACTIONDEMO2, [FILE_DESCRIPTOR2])
 
 
 @definition2.unary_handler("ReverseString2")

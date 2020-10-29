@@ -6,9 +6,11 @@ Licensed under the Apache License, Version 2.0.
 import sys
 from logging import getLogger
 
-from cloudstate.test.actiondemo.test_actiondemo import evaluate_ActionDemo_server
+from cloudstate.test.actiondemo.test_actiondemo import \
+    evaluate_ActionDemo_server
 from cloudstate.test.run_test_server import run_test_server
-from cloudstate.test.shoppingcart.test_shoppingcart import evaluate_shoppingcart_server
+from cloudstate.test.shoppingcart.test_shoppingcart import \
+    evaluate_shoppingcart_server
 
 logger = getLogger()
 

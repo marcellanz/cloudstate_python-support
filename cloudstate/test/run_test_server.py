@@ -6,7 +6,8 @@ Licensed under the Apache License, Version 2.0.
 import logging
 
 from cloudstate.cloudstate import CloudState
-from cloudstate.test.actiondemo.action_definition import definition, definition2
+from cloudstate.test.actiondemo.action_definition import (definition,
+                                                          definition2)
 from cloudstate.test.shoppingcart import shopping_cart_entity
 
 logger = logging.getLogger()

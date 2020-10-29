@@ -3,16 +3,15 @@ Copyright 2020 Lightbend Inc.
 Licensed under the Apache License, Version 2.0.
 """
 import os
-
-from setuptools import setup, find_packages
 import pathlib
 
+from setuptools import find_packages, setup
 # Load version in cloudstate package.
 from setuptools.command.build_py import build_py
 
 exec(open("cloudstate/version.py").read())
 
-PROTOBUF_VERSION = "v0.5.1"
+PROTOBUF_VERSION = "master"
 
 version = __version__  # noqa
 name = "cloudstate"
@@ -20,7 +19,7 @@ name = "cloudstate"
 print(f"package name: {name}, version: {version}", flush=True)
 
 proto_lib_roots = ["protobuf/lib"]
-proto_roots = ["protobuf/proto"]
+proto_roots = ["."]
 
 
 class FetchBuildProtosCommand(build_py):
@@ -54,7 +53,7 @@ setup(
     long_description=open("Description.md", "r").read(),
     long_description_content_type="text/markdown",
     zip_safe=False,
-    scripts=["scripts/compile-protobuf.sh", "scripts/fetch-cloudstate-pb.sh"],
+    scripts=["scripts/fetch-cloudstate-pb.sh"],
     install_requires=[
         "attrs>=19.3.0",
         "google-api>=0.1.12",

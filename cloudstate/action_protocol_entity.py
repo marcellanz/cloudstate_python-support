@@ -9,9 +9,9 @@ from dataclasses import dataclass, field
 from typing import Callable, List, MutableMapping
 
 from google.protobuf import descriptor as _descriptor
-from cloudstate.action_pb2 import _ACTIONPROTOCOL
 
 from cloudstate.action_context import ActionContext
+from cloudstate.action_pb2 import _ACTIONPROTOCOL
 
 
 @dataclass
