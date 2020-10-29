@@ -9,8 +9,7 @@ from logging import getLogger
 from pprint import pprint
 from typing import List
 
-from google.protobuf.descriptor_pb2 import (FileDescriptorProto,
-                                            FileDescriptorSet)
+from google.protobuf.descriptor_pb2 import FileDescriptorProto, FileDescriptorSet
 from google.protobuf.descriptor_pool import Default
 from google.protobuf.empty_pb2 import Empty
 

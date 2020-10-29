@@ -9,8 +9,7 @@ import time
 import grpc
 
 from cloudstate.test.run_test_server import run_test_server
-from cloudstate.test.shoppingcart.shoppingcart_pb2 import (AddLineItem,
-                                                           GetShoppingCart)
+from cloudstate.test.shoppingcart.shoppingcart_pb2 import AddLineItem, GetShoppingCart
 from cloudstate.test.shoppingcart.shoppingcart_pb2_grpc import ShoppingCartStub
 
 logger = logging.getLogger()

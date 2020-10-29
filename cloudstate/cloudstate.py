@@ -17,12 +17,10 @@ from cloudstate.action_servicer import CloudStateActionProtocolServicer
 from cloudstate.discovery_servicer import CloudStateEntityDiscoveryServicer
 from cloudstate.entity_pb2_grpc import add_EntityDiscoveryServicer_to_server
 from cloudstate.event_sourced_entity import EventSourcedEntity
-from cloudstate.event_sourced_pb2_grpc import \
-    add_EventSourcedServicer_to_server
+from cloudstate.event_sourced_pb2_grpc import add_EventSourcedServicer_to_server
 from cloudstate.eventsourced_servicer import CloudStateEventSourcedServicer
 
 # from grpc_reflection.v1alpha import reflection
-
 
 
 @dataclass

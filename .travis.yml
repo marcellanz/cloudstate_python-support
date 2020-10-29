@@ -11,6 +11,8 @@ services:
 jobs:
   include:
 
+  - stage: codestyle
+    script: black --check .
   - stage: build
     install:
       - pip install -r requirements.txt

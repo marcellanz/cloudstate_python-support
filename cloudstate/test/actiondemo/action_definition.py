@@ -8,16 +8,18 @@ from typing import Iterator
 from cloudstate.action_context import ActionContext
 from cloudstate.action_protocol_entity import Action
 from cloudstate.test.actiondemo.actiondemo2_pb2 import _ACTIONDEMO2
-from cloudstate.test.actiondemo.actiondemo2_pb2 import \
-    DESCRIPTOR as FILE_DESCRIPTOR2
-from cloudstate.test.actiondemo.actiondemo2_pb2 import (FunctionRequest2,
-                                                        FunctionResponse2)
+from cloudstate.test.actiondemo.actiondemo2_pb2 import DESCRIPTOR as FILE_DESCRIPTOR2
+from cloudstate.test.actiondemo.actiondemo2_pb2 import (
+    FunctionRequest2,
+    FunctionResponse2,
+)
 from cloudstate.test.actiondemo.actiondemo_pb2 import _ACTIONDEMO
-from cloudstate.test.actiondemo.actiondemo_pb2 import \
-    DESCRIPTOR as FILE_DESCRIPTOR
-from cloudstate.test.actiondemo.actiondemo_pb2 import (FunctionRequest,
-                                                       FunctionResponse,
-                                                       SumTotal)
+from cloudstate.test.actiondemo.actiondemo_pb2 import DESCRIPTOR as FILE_DESCRIPTOR
+from cloudstate.test.actiondemo.actiondemo_pb2 import (
+    FunctionRequest,
+    FunctionResponse,
+    SumTotal,
+)
 
 definition = Action(_ACTIONDEMO, [FILE_DESCRIPTOR])
 

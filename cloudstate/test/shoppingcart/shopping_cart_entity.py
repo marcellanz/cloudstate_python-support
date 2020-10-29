@@ -10,19 +10,20 @@ from google.protobuf.empty_pb2 import Empty
 
 from cloudstate.event_sourced_context import EventSourcedCommandContext
 from cloudstate.event_sourced_entity import EventSourcedEntity
-from cloudstate.test.shoppingcart.persistence.domain_pb2 import \
-    Cart as DomainCart
-from cloudstate.test.shoppingcart.persistence.domain_pb2 import (ItemAdded,
-                                                                 ItemRemoved)
-from cloudstate.test.shoppingcart.persistence.domain_pb2 import \
-    LineItem as DomainLineItem
+from cloudstate.test.shoppingcart.persistence.domain_pb2 import Cart as DomainCart
+from cloudstate.test.shoppingcart.persistence.domain_pb2 import ItemAdded, ItemRemoved
+from cloudstate.test.shoppingcart.persistence.domain_pb2 import (
+    LineItem as DomainLineItem,
+)
 from cloudstate.test.shoppingcart.shoppingcart_pb2 import _SHOPPINGCART
-from cloudstate.test.shoppingcart.shoppingcart_pb2 import \
-    DESCRIPTOR as FILE_DESCRIPTOR
-from cloudstate.test.shoppingcart.shoppingcart_pb2 import (AddLineItem, Cart,
-                                                           GetShoppingCart,
-                                                           LineItem,
-                                                           RemoveLineItem)
+from cloudstate.test.shoppingcart.shoppingcart_pb2 import DESCRIPTOR as FILE_DESCRIPTOR
+from cloudstate.test.shoppingcart.shoppingcart_pb2 import (
+    AddLineItem,
+    Cart,
+    GetShoppingCart,
+    LineItem,
+    RemoveLineItem,
+)
 
 
 @dataclass
