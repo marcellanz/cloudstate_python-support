@@ -51,6 +51,10 @@ setup(
     license="Apache 2.0",
     description="Cloudstate Python Support Library",
     packages=packages,
+    package_data={
+        # If any package contains *.proto files, include them:
+        "": ["*.proto"],
+    },
     long_description=open("Description.md", "r").read(),
     long_description_content_type="text/markdown",
     zip_safe=False,
