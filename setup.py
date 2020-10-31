@@ -52,7 +52,6 @@ setup(
     description="Cloudstate Python Support Library",
     packages=packages,
     package_data={
-        # If any package contains *.proto files, include them:
         "": ["*.proto"],
     },
     long_description=open("Description.md", "r").read(),

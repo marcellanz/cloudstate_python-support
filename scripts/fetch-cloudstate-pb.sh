@@ -10,7 +10,6 @@ function fetch() {
   local path=$3
   mkdir -p $(dirname $local)
   curl -o ${local} https://raw.githubusercontent.com/cloudstateio/cloudstate/${tag}${path}
-  #sed 's/^option java_package.*/option go_package = "${go_package}";/' protobuf/${path}
 }
 
 tag=$1
@@ -31,7 +30,6 @@ fetch "cloudstate/entity_key.proto" $tag "/protocols/frontend/cloudstate/entity_
 fetch "cloudstate/eventing.proto" $tag  "/protocols/frontend/cloudstate/eventing.proto"
 
 # dependencies
-#fetch "proxy/grpc/reflection/v1alpha/reflection.proto" $tag
 fetch "protobuf/lib/google/api/annotations.proto" $tag "/protocols/frontend/google/api/annotations.proto"
 fetch "protobuf/lib/google/api/http.proto" $tag "/protocols/frontend/google/api/http.proto"
 fetch "protobuf/lib/google/api/httpbody.proto" $tag "/protocols/frontend/google/api/httpbody.proto"
